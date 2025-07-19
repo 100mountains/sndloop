@@ -1,6 +1,10 @@
 #!/bin/bash
 
+# Change to project root directory
+cd "$(dirname "$0")/.."
+
 echo "🛠️ Starting development server..."
+echo "📁 Working directory: $(pwd)"
 
 # Check for connected devices
 flutter devices

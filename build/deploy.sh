@@ -1,9 +1,13 @@
 #!/bin/bash
 
+# Change to project root directory
+cd "$(dirname "$0")/.."
+
 echo "🚀 Deploying SNDLOOP..."
+echo "📁 Working directory: $(pwd)"
 
 # Build for production
-./build.sh
+./build/build.sh
 
 echo "Select deployment target:"
 echo "1) Web (copy to server)"

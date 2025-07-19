@@ -32,10 +32,19 @@ flutter config --enable-windows-desktop
 flutter config --enable-macos-desktop  
 flutter config --enable-linux-desktop
 
-# Create the project
+# Create the project in root directory
 echo "🎵 Creating SNDLOOP Flutter app..."
-flutter create sndloop
-cd sndloop
+ROOT_DIR="$(dirname "$0")/.."
+cd "$ROOT_DIR"
+echo "📁 Working directory: $(pwd)"
+
+# Check if already a Flutter project
+if [ -f "pubspec.yaml" ]; then
+    echo "✅ Flutter project already exists"
+else
+    echo "Creating new Flutter project..."
+    flutter create . --project-name sndloop
+fi
 
 # Add dependencies to pubspec.yaml
 cat << 'EOF' >> pubspec.yaml
@@ -59,4 +68,4 @@ EOF
 # Install packages
 flutter pub get
 
-echo "✅ Setup complete! Run ./build.sh to build the app."
+echo "✅ Setup complete! Run ./build/build.sh to build the app."

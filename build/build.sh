@@ -1,7 +1,11 @@
 #!/bin/bash
 set -e
 
+# Change to project root directory
+cd "$(dirname "$0")/.."
+
 echo "🏗️ Building SNDLOOP for all platforms..."
+echo "📁 Working directory: $(pwd)"
 
 # Clean previous builds
 flutter clean
@@ -44,4 +48,7 @@ fi
 # Linux
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     flutter build linux --release
-    echo "
+    echo "✅ Linux app: build/linux/x64/release/bundle/"
+fi
+
+echo "🎉 All available builds complete!"
