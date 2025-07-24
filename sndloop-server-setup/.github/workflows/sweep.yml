@@ -1,0 +1,25 @@
+name: Sweep
+
+on:
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.comment.body, 'Sweep:') || startsWith(github.event.issue.title, 'Sweep:')
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Sweep
+        uses: sweep-ai/sweep@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
